@@ -247,7 +247,7 @@
             const total = cart.reduce((a, b) => a + b.price, 0);
             
             // Texto formatado sem emojis
-            let text = `Olá TNG Gráfica! Gostaria de um orçamento para os seguintes itens:%0A%0A${itensStr}%0A%0ATotal do Pedido: R$ ${total.toFixed(2)}%0A%0AAguardando instruções para prosseguir com o pagamento e envio da arte.`;
+            let text = `Olá TNG Gráfica! Gostaria de um orçamento para os seguintes itens:%0A%0A${itensStr}%0A%0ATotal do Pedido: R$ ${total.toFixed(2)}%0A%0AAguardando instruções para prosseguir com a nossa conversa.`;
             
             window.open(`${STORE_CONFIG.whatsappUrl}?text=${text}`, '_blank');
         }

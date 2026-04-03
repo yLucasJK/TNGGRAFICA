@@ -3,202 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TNG Gráfica Rápida - Loja Online</title>
-    <!-- Tailwind para Estilização Moderna -->
+    <title>TNG Gráfica Rápida - Aparecida de Goiânia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Ícones FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <!-- FontAwesome atualizado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .cart-drawer { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card { transition: all 0.3s ease; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+        .logo-circle { width: 50px; height: 50px; border-radius: 50%; border: 2px solid #2563eb; padding: 2px; background: white; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.6s ease forwards; }
         
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            scroll-behavior: smooth;
+        /* Estilo para o fundo escuro do destaque */
+        .hero-dark {
+            background-color: #0f1115;
+            background-image: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
         }
 
-        .cart-drawer { 
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        /* Dica visual para o link de localização */
+        .location-link:hover .location-icon-bg {
+            background-color: #1d4ed8; /* Blue-700 */
+            transform: scale(1.1);
         }
-
-        .product-card {
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover { 
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
-        .logo-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid #2563eb;
-            padding: 2px;
-            background: white;
-        }
-
-        /* Animação de Fade In */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-fade {
-            animation: fadeIn 0.6s ease forwards;
+        .location-link:hover {
+            background-color: white;
+            border-color: #2563eb;
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <!-- Configurações do Site -->
     <script>
         const STORE_CONFIG = {
             name: "TNG Gráfica Rápida",
             whatsappNumber: "556232896657",
+            instagramUrl: "https://www.instagram.com/tnggrafica",
+            whatsappUrl: "https://wa.me/556232896657",
             currency: "R$",
             logoUrl: "https://i.ibb.co/1tm8VvQs/449692177-1170187230792604-6008068252314116750-n.jpg",
-            heroUrl: "https://i.ibb.co/1tDGz3C4/image-05e383.png",
+            heroUrl: "https://i.ibb.co/xSRf7BXp/474477456-1172467881494758-562927171427482846-n-1.jpg",
+            locationUrl: "https://share.google/i6GUojqMtUALSsNEP",
             products: [
-                { id: 1, name: "Cartão de Visita", price: 45.00, description: "1000 unidades, Couchê 300g, Verniz Total", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
-                { id: 2, name: "Panfleto A5", price: 89.90, description: "500 unidades, 15x21cm, Colorido Frente", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
-                { id: 3, name: "Banner Lona", price: 65.00, description: "60x90cm, Acabamento com Bastão e Corda", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
-                { id: 4, name: "Adesivo Vinil", price: 30.00, description: "100 unidades, 5x5cm, Corte Redondo", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
-                { id: 5, name: "Bloco de Pedido", price: 25.00, description: "50 folhas, 1 via, Papel Offset 75g", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
-                { id: 6, name: "Pasta Proposta", price: 120.00, description: "100 unidades, com Orelha Interna", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" }
+                { id: 1, name: "Agendas Personalizadas", price: 65.00, description: "Produto personalizado, capa dura e várias opções de acabamento. Trabalhamos com venda em atacado com opção de preço diferenciado de acordo com a quantidade solicitada.", image: "[url=https://ibb.co/pBKRp337][img]https://i.ibb.co/9k4VjqqD/Captura-de-tela-2026-04-03-143949.png" },
+                { id: 2, name: "Balinhas personalizadas", price: 70.00, description: "Balinhas personalizadas com 100 unidades.", image: "https://i.ibb.co/tpP5dr09/Captura-de-tela-2026-04-03-143712.png[/img][/url]" },
+                { id: 3, name: "Tag com Balinha", price: 1.50, description: "Tag com Balinha personalizadas, pedido mínimo de 50 unidades.", image: "https://i.ibb.co/s9hdb6yx/Captura-de-tela-2026-04-03-142802.png" },
+                { id: 4, name: "Cartela de Adesivos A4", price: 15.00, description: "Folha adesiviva gloss papel.", image: "https://i.ibb.co/GQLdFQkM/Captura-de-tela-2026-04-03-130002.png" },
+                { id: 5, name: "Canetas", price: 2.25, description: "Caneta com personalização, pedido mínimo de 20 unidades.", image: "https://i.ibb.co/C543fyJF/Captura-de-tela-2026-04-03-143334.png[/img][/url]" },
+                { id: 6, name: "Carimbos", price: 48.00, description: "Carimbos Personalizados.", image: "https://i.ibb.co/3myzvKjL/Captura-de-tela-2026-04-03-143126.png" }
+                { id: 7, name: "Panfletos 4x0", price: 150.00, description: "1000 unidades, modelo 4/0 frente colorida verso branco. Tamanho 10x15cm.", image: "https://i.ibb.co/Hpgp3ybN/Captura-de-tela-2026-04-03-144233.png" }
+                { id: 8, name: "Cartão de Visita", price: 135.00, description: "Cartao de visita 4/1 ( frente colorida e verso preto e branco).", image: "https://i.ibb.co/RTkqWZm3/Captura-de-tela-2026-04-03-144446.png" }
+                { id: 9, name: "Calendário Triangular de mesa", price: 70.00, description: "Calendário Triangular 10 unidades.", image: "https://i.ibb.co/XZxgyNS3/Captura-de-tela-2026-04-03-145253.png" }
+                { id: 10, name: "Calendários Folha de mesa", price: 100.00, description: "Calendários Folha de mesa 10 unidades.", image: "https://i.ibb.co/vvVkJJrD/Captura-de-tela-2026-04-03-145817.png" }
             ]
         };
     </script>
 
-    <!-- Header -->
     <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 py-4">
         <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <img src="https://i.ibb.co/1tm8VvQs/449692177-1170187230792604-6008068252314116750-n.jpg" alt="Logo TNG" class="logo-circle object-cover">
-                <span class="text-xl font-extrabold tracking-tight text-slate-800">TNG <span class="text-blue-600 uppercase">Gráfica</span></span>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tight text-slate-800 uppercase leading-none">TNG <span class="text-blue-600">Gráfica</span></span>
+                    <span class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Aparecida de Goiânia</span>
+                </div>
             </div>
             
-            <button onclick="toggleCart()" class="relative group p-2 bg-slate-100 rounded-full hover:bg-blue-600 transition-all duration-300">
-                <i class="fa-solid fa-cart-shopping text-slate-600 group-hover:text-white text-lg px-2"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white group-hover:bg-slate-800">0</span>
-            </button>
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/tnggrafica" target="_blank" class="hidden md:flex items-center justify-center w-10 h-10 bg-slate-100 rounded-xl text-pink-600 hover:bg-pink-50 transition-all">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+                
+                <button onclick="toggleCart()" class="relative flex items-center justify-center w-12 h-12 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200 hover:bg-blue-700 transition-all active:scale-90">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-slate-900 text-white text-[10px] font-black w-6 h-6 flex items-center justify-center rounded-full border-2 border-white">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section Ajustada -->
-    <section class="relative overflow-hidden bg-white">
-        <div class="container mx-auto px-4 md:px-8 py-12 md:py-20 flex flex-col md:flex-row items-center gap-12">
-            <!-- Coluna de Texto (Esquerda) -->
+    <!-- Layout de Destaque com Fundo Escuro -->
+    <section class="hero-dark relative overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8 py-12 md:py-24 flex flex-col md:flex-row items-center gap-12">
             <div class="flex-1 text-center md:text-left z-10">
-                <h1 class="text-4xl md:text-6xl font-black mb-6 italic tracking-tighter animate-fade">
-                    SUA MARCA EM <br class="hidden md:block">
-                    <span class="text-blue-600 not-italic uppercase tracking-normal">Alta Definição</span>
+                <h1 class="text-4xl md:text-6xl font-black mb-6 italic tracking-tighter animate-fade text-white uppercase">
+                    EXCELÊNCIA EM <br class="hidden md:block">
+                    <span class="text-blue-500 not-italic uppercase tracking-normal">Cada Impressão</span>
                 </h1>
-                <p class="text-slate-500 max-w-lg mx-auto md:mx-0 mb-10 text-lg animate-fade" style="animation-delay: 0.1s">
-                    Qualidade, compromisso e o melhor suporte de Goiânia para o seu negócio brilhar com impressões impecáveis.
+                <p class="text-slate-400 max-w-lg mx-auto md:mx-0 mb-10 text-lg animate-fade leading-relaxed">
+                    Qualidade, compromisso e a melhor Gráfica de Aparecida de Goiânia. Atendemos desde as suas necessidades pessoais e escolares até ao seu negócio, sempre com impressões e acabamentos impecáveis.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade" style="animation-delay: 0.2s">
-                    <a href="#produtos" class="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-100">Ver Produtos</a>
-                    <a href="https://wa.me/556232896657" target="_blank" class="px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all">Falar com Consultor</a>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start animate-fade">
+                    <a href="#produtos" class="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 shadow-lg shadow-blue-900/20 flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-solid fa-layer-group"></i> Ver Catálogo
+                    </a>
+                    <a href="https://wa.me/556232896657" target="_blank" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/10 text-white font-bold rounded-2xl hover:bg-white/20 flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp text-green-400"></i> Orçamento Rápido
+                    </a>
                 </div>
             </div>
 
-            <!-- Coluna de Imagem (Direita - Retangular) -->
-            <div class="flex-1 w-full animate-fade" style="animation-delay: 0.3s">
+            <div class="flex-1 w-full animate-fade relative">
                 <div class="relative group">
-                    <!-- Detalhe decorativo atrás da imagem -->
-                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-blue-100 rounded-full blur-2xl opacity-60"></div>
-                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-indigo-100 rounded-full blur-3xl opacity-60"></div>
+                    <div class="overflow-hidden rounded-[2.5rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5">
+                        <img src="https://i.ibb.co/1tDGz3C4/image-05e383.png" alt="TNG Gráfica Destaque" class="w-full h-auto min-h-[300px] md:min-h-[450px] object-cover transform hover:scale-105 transition-transform duration-700">
+                    </div>
                     
-                    <img src="https://i.ibb.co/1tDGz3C4/image-05e383.png" alt="Fachada TNG" 
-                         class="relative w-full h-[300px] md:h-[450px] object-cover rounded-3xl shadow-2xl border-2 border-slate-100 transform group-hover:scale-[1.02] transition-transform duration-500">
-                    
-                    <!-- Badge de Qualidade -->
-                    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 md:left-10 md:translate-x-0 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-50">
-                        <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-check"></i>
+                    <!-- Botão de Localização Clicável com dicas visuais -->
+                    <a href="https://share.google/i6GUojqMtUALSsNEP" target="_blank" class="location-link absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-xl p-4 rounded-2xl shadow-2xl border border-white flex items-center gap-3 transition-all duration-300 group/link hover:shadow-blue-500/20">
+                        <div class="location-icon-bg w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-blue-200 transition-transform duration-300">
+                            <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div>
-                            <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider leading-none">Referência em</p>
-                            <p class="text-slate-800 font-bold">Goiânia - GO</p>
+                            <div class="flex items-center gap-2">
+                                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-widest leading-none">Ver no Mapa</p>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[8px] text-blue-500 opacity-0 group-hover/link:opacity-100 transition-opacity"></i>
+                            </div>
+                            <p class="text-slate-800 font-extrabold text-sm">Aparecida de Goiânia</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Lista de Produtos -->
-    <section id="produtos" class="py-16 container mx-auto px-4 md:px-8">
-        <div class="flex items-center justify-between mb-10">
-            <h2 class="text-2xl font-bold border-l-4 border-blue-600 pl-4 uppercase tracking-widest text-slate-700">Nossos Serviços</h2>
-            <div class="h-px flex-1 bg-slate-200 ml-6 hidden md:block"></div>
-        </div>
         
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Injetado via JS -->
-        </div>
+        <!-- Elementos decorativos de fundo -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-900/20 rounded-full blur-[100px] -z-10"></div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-12">
-        <div class="container mx-auto px-4 text-center">
-            <div class="mb-6 flex justify-center gap-6">
-                <a href="#" class="text-2xl hover:text-blue-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://wa.me/556232896657" class="text-2xl hover:text-green-400 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+    <section id="produtos" class="py-16 container mx-auto px-4 md:px-8">
+        <div class="flex items-center gap-4 mb-12">
+            <div class="h-10 w-2 bg-blue-600 rounded-full"></div>
+            <h2 class="text-2xl font-bold uppercase tracking-tight text-slate-700">O que fazemos por você</h2>
+        </div>
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-12 text-center">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="https://www.instagram.com/tnggrafica" target="_blank" class="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl text-2xl hover:text-blue-400 hover:bg-white/10 transition-all">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/556232896657" target="_blank" class="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl text-2xl hover:text-green-400 hover:bg-white/10 transition-all">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
             </div>
-            <p class="text-slate-400 text-sm">© 2024 TNG Gráfica Rápida e Copiadora. Todos os direitos reservados.</p>
-            <p class="text-slate-500 text-[10px] mt-2 uppercase tracking-widest">Goiânia - GO</p>
+            <p class="text-slate-400 text-sm">© 2026 TNG Gráfica Rápida e Copiadora. Todos os direitos reservados.</p>
+            <p class="text-slate-500 text-[10px] mt-2 uppercase tracking-widest">Aparecida de Goiânia - GO</p>
         </div>
     </footer>
 
-    <!-- Carrinho Lateral (Drawer) -->
+    <!-- Carrinho Lateral -->
     <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-slate-900/60 z-[60] hidden backdrop-blur-sm"></div>
-    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] cart-drawer translate-x-full shadow-2xl flex flex-col">
-        <div class="p-6 border-b flex justify-between items-center bg-slate-50">
-            <h3 class="text-xl font-extrabold uppercase tracking-tight text-slate-800">Seu Carrinho</h3>
-            <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-900"><i class="fa-solid fa-xmark text-2xl"></i></button>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] cart-drawer translate-x-full shadow-2xl flex flex-col p-6">
+        <div class="flex justify-between items-center mb-8 pb-4 border-b">
+            <h3 class="text-xl font-extrabold uppercase">Seu Pedido</h3>
+            <button onclick="toggleCart()" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-all text-slate-500">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
-
-        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
-            <div class="flex flex-col items-center justify-center h-full text-slate-400 italic">
-                <i class="fa-solid fa-cart-flatbed text-5xl mb-4 opacity-20"></i>
-                <p>Seu carrinho está vazio...</p>
-            </div>
-        </div>
-
-        <div class="p-6 border-t bg-slate-50">
-            <div class="flex justify-between items-center mb-6">
-                <span class="text-slate-500 font-medium">Total Estimado:</span>
-                <span id="cart-total" class="text-2xl font-black text-blue-600">R$ 0,00</span>
-            </div>
-            <button onclick="checkout()" class="w-full py-4 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-bold text-lg shadow-lg shadow-green-200 transition-all active:scale-95 flex items-center justify-center gap-3">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-                FINALIZAR NO WHATSAPP
+        <div id="cart-items" class="flex-1 overflow-y-auto space-y-4"></div>
+        <div class="border-t pt-6 mt-6">
+            <div class="flex justify-between text-2xl font-black text-blue-600 mb-6"><span>Total:</span> <span id="cart-total">R$ 0,00</span></div>
+            <button onclick="checkout()" class="w-full py-5 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-bold shadow-lg shadow-green-100 flex items-center justify-center gap-3 transition-all active:scale-95 uppercase tracking-wide">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Finalizar no WhatsApp
             </button>
         </div>
     </div>
 
-    <!-- Scripts de Funcionalidade -->
     <script>
         let cart = [];
-        const grid = document.getElementById('product-grid');
-
         function initStore() {
-            grid.innerHTML = STORE_CONFIG.products.map((p, index) => `
-                <div class="bg-white rounded-[2rem] border border-slate-100 p-5 product-card animate-fade" style="animation-delay: ${0.1 * index}s">
-                    <div class="relative mb-5 overflow-hidden rounded-2xl group">
-                        <img src="${p.image}" alt="${p.name}" class="h-52 w-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
+            document.getElementById('product-grid').innerHTML = STORE_CONFIG.products.map(p => `
+                <div class="bg-white rounded-[2rem] border border-slate-100 p-5 product-card flex flex-col h-full shadow-sm">
+                    <div class="overflow-hidden rounded-2xl mb-4 h-48">
+                        <img src="${p.image}" class="h-full w-full object-cover transform hover:scale-110 transition-transform duration-500">
                     </div>
-                    <h4 class="text-xl font-bold text-slate-800 mb-2">${p.name}</h4>
-                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">${p.description}</p>
-                    <div class="flex justify-between items-center mt-auto">
-                        <div class="flex flex-col">
-                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">A partir de</span>
-                            <span class="font-black text-xl text-blue-600">${STORE_CONFIG.currency} ${p.price.toFixed(2)}</span>
-                        </div>
-                        <button onclick="addToCart(${p.id})" class="bg-slate-900 hover:bg-blue-600 text-white w-12 h-12 rounded-2xl transition-colors flex items-center justify-center shadow-lg shadow-slate-200">
+                    <h4 class="text-xl font-bold mb-2 text-slate-800">${p.name}</h4>
+                    <p class="text-slate-500 text-sm mb-6 flex-grow leading-relaxed">${p.description}</p>
+                    <div class="flex justify-between items-center mt-auto pt-4 border-t border-slate-50">
+                        <span class="font-black text-xl text-blue-600">R$ ${p.price.toFixed(2)}</span>
+                        <button onclick="addToCart(${p.id})" class="bg-slate-900 hover:bg-blue-600 text-white w-12 h-12 rounded-xl transition-all shadow-md active:scale-90 flex items-center justify-center">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -206,18 +194,19 @@
             `).join('');
         }
 
-        function toggleCart() {
-            document.getElementById('cart-drawer').classList.toggle('translate-x-full');
-            document.getElementById('cart-overlay').classList.toggle('hidden');
+        function toggleCart() { 
+            document.getElementById('cart-drawer').classList.toggle('translate-x-full'); 
+            document.getElementById('cart-overlay').classList.toggle('hidden'); 
         }
 
-        function addToCart(id) {
-            const p = STORE_CONFIG.products.find(x => x.id === id);
-            cart.push({...p, cartId: Date.now()});
-            updateUI();
+        function addToCart(id) { 
+            const p = STORE_CONFIG.products.find(x => x.id === id); 
+            cart.push({...p, cartId: Date.now()}); 
+            updateUI(); 
             const btn = event.currentTarget;
-            btn.classList.replace('bg-slate-900', 'bg-green-500');
-            setTimeout(() => btn.classList.replace('bg-green-500', 'bg-slate-900'), 800);
+            const originalIcon = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check text-green-400"></i>';
+            setTimeout(() => btn.innerHTML = originalIcon, 1000);
         }
 
         function removeFromCart(cartId) {
@@ -229,20 +218,15 @@
             document.getElementById('cart-count').innerText = cart.length;
             const container = document.getElementById('cart-items');
             if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="flex flex-col items-center justify-center h-full text-slate-400 italic">
-                        <i class="fa-solid fa-cart-flatbed text-5xl mb-4 opacity-20"></i>
-                        <p>Seu carrinho está vazio...</p>
-                    </div>`;
+                container.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-slate-300 italic py-10"><i class="fa-solid fa-cart-shopping text-4xl mb-2 opacity-20"></i> Carrinho vazio</div>`;
             } else {
                 container.innerHTML = cart.map(i => `
-                    <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-2xl border border-slate-100">
-                        <img src="${i.image}" class="w-16 h-16 object-cover rounded-xl shadow-sm">
-                        <div class="flex-1">
-                            <h5 class="font-bold text-slate-800 text-sm">${i.name}</h5>
+                    <div class="bg-slate-50 p-4 rounded-2xl flex justify-between items-center border border-slate-100">
+                        <div class="flex flex-col">
+                            <b class="text-slate-800">${i.name}</b> 
                             <span class="text-blue-600 font-bold text-sm">R$ ${i.price.toFixed(2)}</span>
                         </div>
-                        <button onclick="removeFromCart(${i.cartId})" class="text-slate-300 hover:text-red-500 transition-colors">
+                        <button onclick="removeFromCart(${i.cartId})" class="text-slate-300 hover:text-red-500 transition-colors p-2">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -256,10 +240,10 @@
             if (cart.length === 0) return;
             let itensStr = cart.map(i => `✅ *${i.name}* - R$ ${i.price.toFixed(2)}`).join('%0A');
             const total = cart.reduce((a, b) => a + b.price, 0);
-            let text = `Olá, TNG Gráfica! Gostaria de fazer um pedido:%0A%0A${itensStr}%0A%0A💰 *Total: R$ ${total.toFixed(2)}*%0A%0AComo posso proceder com o pagamento e envio dos arquivos?`;
-            window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${text}`, '_blank');
+            let text = `Olá TNG Gráfica! Gostaria de um orçamento:%0A%0A${itensStr}%0A%0A💰 *Total: R$ ${total.toFixed(2)}*%0A%0AComo procedo com o envio dos arquivos?`;
+            window.open(`${STORE_CONFIG.whatsappUrl}?text=${text}`, '_blank');
         }
-
+        
         window.onload = initStore;
     </script>
 </body>

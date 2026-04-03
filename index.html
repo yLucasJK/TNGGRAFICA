@@ -4,217 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TNG Gráfica Rápida - Loja Online</title>
+    <!-- Tailwind para Estilização Moderna -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ícones FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .cart-drawer {
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-        }
-        
-        html {
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
             scroll-behavior: smooth;
         }
-        
-        .tng-logo-container {
-            width: 48px;
-            height: 48px;
+
+        .cart-drawer { 
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover { 
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 2px solid #2563eb;
+            padding: 2px;
             background: white;
-            border: 1px solid #e5e7eb;
         }
 
-        .cart-button-outline {
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            transition: all 0.2s;
+        /* Animação de Fade In */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .cart-button-filled {
-            background-color: #0071e3;
-            color: white;
-            border-radius: 8px;
-            padding: 8px 24px;
-            font-weight: 600;
-            transition: all 0.2s;
+        .animate-fade {
+            animation: fadeIn 0.6s ease forwards;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-slate-50 text-slate-900">
 
+    <!-- Configurações do Site -->
     <script>
-        // CONFIGURAÇÕES GERAIS
         const STORE_CONFIG = {
             name: "TNG Gráfica Rápida",
             whatsappNumber: "556232896657",
             currency: "R$",
-            logoCircular: "https://ibb.co/1tm8VvQs",
-            bannerFachada: "https://i.ibb.co/7dwtkH30/474477456-1172467881494758-562927171427482846-n.jpg",
-            
+            logoUrl: "https://i.ibb.co/1tm8VvQs/449692177-1170187230792604-6008068252314116750-n.jpg",
+            heroUrl: "https://i.ibb.co/1tDGz3C4/image-05e383.png",
             products: [
-                { id: 1, name: "Cartão de Visita", price: 45.00, description: "1000 unidades, Papel Couchê 300g", image: "uploaded:image_05e383.png" },
-                { id: 2, name: "Panfleto A5", price: 89.90, description: "500 unidades, Colorido Frente", image: "uploaded:image_05e383.png" },
-                { id: 3, name: "Banner Lona", price: 65.00, description: "60x90cm com acabamento", image: "uploaded:image_05e383.png" },
-                { id: 4, name: "Adesivo Redondo", price: 30.00, description: "100 unidades, 5x5cm", image: "uploaded:image_05e383.png" },
-                { id: 5, name: "Caderno Personalizado", price: 45.00, description: "Capa dura, 100 folhas", image: "uploaded:image_05e383.png" },
-                { id: 6, name: "Talão de Pedido", price: 25.00, description: "50 folhas, Autocopiativo", image: "uploaded:image_05e383.png" }
+                { id: 1, name: "Cartão de Visita", price: 45.00, description: "1000 unidades, Couchê 300g, Verniz Total", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
+                { id: 2, name: "Panfleto A5", price: 89.90, description: "500 unidades, 15x21cm, Colorido Frente", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
+                { id: 3, name: "Banner Lona", price: 65.00, description: "60x90cm, Acabamento com Bastão e Corda", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
+                { id: 4, name: "Adesivo Vinil", price: 30.00, description: "100 unidades, 5x5cm, Corte Redondo", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
+                { id: 5, name: "Bloco de Pedido", price: 25.00, description: "50 folhas, 1 via, Papel Offset 75g", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" },
+                { id: 6, name: "Pasta Proposta", price: 120.00, description: "100 unidades, com Orelha Interna", image: "https://i.ibb.co/1tDGz3C4/image-05e383.png" }
             ]
         };
     </script>
 
     <!-- Header -->
-    <header class="bg-white border-b border-gray-100 sticky top-0 z-50 py-3">
-        <div class="container mx-auto px-4 md:px-10 flex justify-between items-center">
-            
-            <div class="flex items-center gap-4">
-                <div class="tng-logo-container">
-                    <img src="uploaded:449692177_1170187230792604_6008068252314116750_n.jpg" alt="TNG Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/150'">
-                </div>
-                <div class="flex items-center text-[18px] md:text-[20px]">
-                    <span class="font-bold text-gray-900">TNG Gráfica Rápida</span>
-                    <span class="mx-2 text-gray-300">-</span>
-                    <span class="text-[#0071e3] font-medium">Loja Online</span>
-                </div>
-            </div>
-
+    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 py-4">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <button onclick="toggleCart()" class="cart-button-outline hidden sm:flex">
-                    <i class="fas fa-shopping-bag text-gray-400"></i>
-                    <span class="text-gray-600 text-sm">Carrinho <span class="ml-1 text-blue-600 font-medium">R$ <span id="cart-total-header">0</span></span></span>
-                </button>
-                <button onclick="toggleCart()" class="cart-button-filled">
-                    Ver <span id="cart-count-label">0</span>
-                </button>
+                <img src="https://i.ibb.co/1tm8VvQs/449692177-1170187230792604-6008068252314116750-n.jpg" alt="Logo TNG" class="logo-circle object-cover">
+                <span class="text-xl font-extrabold tracking-tight text-slate-800">TNG <span class="text-blue-600 uppercase">Gráfica</span></span>
             </div>
+            
+            <button onclick="toggleCart()" class="relative group p-2 bg-slate-100 rounded-full hover:bg-blue-600 transition-all duration-300">
+                <i class="fa-solid fa-cart-shopping text-slate-600 group-hover:text-white text-lg px-2"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white group-hover:bg-slate-800">0</span>
+            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4 md:px-10 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-3/5">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight uppercase italic">
-                    Sua Marca em <br>
-                    <span class="text-blue-600">Alta Definição</span>
-                </h1>
-                <p class="text-xl text-gray-500 mb-8 max-w-lg">
-                    TNG Gráfica Rápida: Qualidade, compromisso e o melhor suporte de Goiânia para o seu negócio.
-                </p>
-                <a href="#produtos-lista" class="bg-[#0071e3] text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition shadow-lg inline-block text-center">
-                    Ver Produtos
-                </a>
-            </div>
-            <div class="md:w-2/5 relative">
-                <div class="absolute -inset-4 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
-                <img src="uploaded:image_05e383.png" alt="TNG Fachada" class="relative w-full h-auto rounded-3xl shadow-2xl border-4 border-white" onerror="this.src='https://via.placeholder.com/600x400'">
+    <section class="pt-12 pb-20 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 italic tracking-tighter animate-fade">
+                SUA MARCA EM <br class="hidden md:block">
+                <span class="text-blue-600 not-italic uppercase tracking-normal">Alta Definição</span>
+            </h1>
+            <p class="text-slate-500 max-w-lg mx-auto mb-10 text-lg animate-fade" style="animation-delay: 0.1s">
+                Qualidade, compromisso e o melhor suporte de Goiânia para o seu negócio brilhar.
+            </p>
+            <div class="relative max-w-4xl mx-auto animate-fade" style="animation-delay: 0.2s">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2rem] blur opacity-20"></div>
+                <img src="https://i.ibb.co/1tDGz3C4/image-05e383.png" alt="Fachada TNG" class="relative rounded-[2rem] shadow-2xl border-4 border-white w-full">
             </div>
         </div>
     </section>
 
-    <!-- Catálogo de Produtos -->
-    <main class="container mx-auto px-4 md:px-10 py-12" id="produtos-lista">
-        <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-8 border-b border-gray-100 pb-8">
-            <h2 class="text-3xl font-extrabold text-gray-900 italic uppercase">Nossos Serviços</h2>
-            <div class="relative w-full md:w-80">
-                <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="O que você precisa?" class="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
-                <div class="absolute left-4 top-3.5 text-gray-400">
-                    <i class="fas fa-search"></i>
-                </div>
+    <!-- Lista de Produtos -->
+    <section class="py-16 container mx-auto px-4 md:px-8">
+        <div class="flex items-center justify-between mb-10">
+            <h2 class="text-2xl font-bold border-l-4 border-blue-600 pl-4 uppercase tracking-widest text-slate-700">Nossos Serviços</h2>
+            <div class="h-px flex-1 bg-slate-200 ml-6 hidden md:block"></div>
+        </div>
+        
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+            <!-- Injetado via JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-6 flex justify-center gap-6">
+                <a href="#" class="text-2xl hover:text-blue-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-green-400 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
-        </div>
-
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <!-- Produtos renderizados via JS -->
-        </div>
-    </main>
-
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="container mx-auto px-4 md:px-10 text-center">
-            <img src="uploaded:449692177_1170187230792604_6008068252314116750_n.jpg" alt="TNG" class="w-20 h-20 rounded-full mx-auto mb-6 object-cover border-2 border-blue-600" onerror="this.src='https://via.placeholder.com/150'">
-            <p class="text-gray-400">&copy; <span id="year"></span> TNG Gráfica Rápida. (62) 3289-6657</p>
+            <p class="text-slate-400 text-sm">© 2024 TNG Gráfica Rápida e Copiadora. Todos os direitos reservados.</p>
+            <p class="text-slate-500 text-[10px] mt-2 uppercase tracking-widest">Goiânia - GO</p>
         </div>
     </footer>
 
-    <!-- Carrinho Lateral -->
-    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] hidden"></div>
-    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] shadow-2xl cart-drawer translate-x-full flex flex-col">
-        <div class="p-6 border-b flex justify-between items-center bg-blue-600 text-white">
-            <h3 class="text-xl font-bold uppercase italic">Seu Carrinho</h3>
-            <button onclick="toggleCart()" class="text-white/80 hover:text-white transition">
-                <i class="fas fa-times text-xl"></i>
-            </button>
+    <!-- Carrinho Lateral (Drawer) -->
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-slate-900/60 z-[60] hidden backdrop-blur-sm"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] cart-drawer translate-x-full shadow-2xl flex flex-col">
+        <div class="p-6 border-b flex justify-between items-center bg-slate-50">
+            <h3 class="text-xl font-extrabold uppercase tracking-tight text-slate-800">Seu Carrinho</h3>
+            <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-900"><i class="fa-solid fa-xmark text-2xl"></i></button>
         </div>
-        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50"></div>
-        <div class="p-6 border-t bg-white">
-            <div class="flex justify-between items-center mb-6">
-                <span class="text-gray-500 font-semibold">Total:</span>
-                <span id="cart-total" class="text-2xl font-black text-gray-900">R$ 0,00</span>
+
+        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
+            <!-- Vazio por padrão -->
+            <div class="flex flex-col items-center justify-center h-full text-slate-400 italic">
+                <i class="fa-solid fa-cart-flatbed text-5xl mb-4 opacity-20"></i>
+                <p>Seu carrinho está vazio...</p>
             </div>
-            <button onclick="checkout()" class="w-full py-4 bg-green-500 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-green-600 transition">
-                <i class="fab fa-whatsapp text-2xl"></i> Finalizar Pedido
+        </div>
+
+        <div class="p-6 border-t bg-slate-50">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-slate-500 font-medium">Total Estimado:</span>
+                <span id="cart-total" class="text-2xl font-black text-blue-600">R$ 0,00</span>
+            </div>
+            <button onclick="checkout()" class="w-full py-4 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-bold text-lg shadow-lg shadow-green-200 transition-all active:scale-95 flex items-center justify-center gap-3">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                FINALIZAR NO WHATSAPP
             </button>
         </div>
     </div>
 
+    <!-- Scripts de Funcionalidade -->
     <script>
         let cart = [];
+        const grid = document.getElementById('product-grid');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('year').innerText = new Date().getFullYear();
-            renderProducts(STORE_CONFIG.products);
-        });
-
-        function renderProducts(list) {
-            const grid = document.getElementById('product-grid');
-            if (list.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center py-20 text-gray-400">Nenhum produto encontrado.</div>';
-                return;
-            }
-            grid.innerHTML = list.map(product => `
-                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl product-card border border-gray-100 flex flex-col overflow-hidden transition-all duration-300">
-                    <div class="relative h-56 w-full overflow-hidden bg-gray-100">
-                        <img src="${product.image}" alt="${product.name}" class="h-full w-full object-cover" onerror="this.src='https://via.placeholder.com/300'">
+        // Renderiza Produtos
+        function initStore() {
+            grid.innerHTML = STORE_CONFIG.products.map((p, index) => `
+                <div class="bg-white rounded-[2rem] border border-slate-100 p-5 product-card animate-fade" style="animation-delay: ${0.1 * index}s">
+                    <div class="relative mb-5 overflow-hidden rounded-2xl group">
+                        <img src="${p.image}" alt="${p.name}" class="h-52 w-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
                     </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <h4 class="text-lg font-bold text-gray-900 mb-1">${product.name}</h4>
-                        <p class="text-gray-500 text-sm mb-4 flex-1 line-clamp-2">${product.description}</p>
-                        <div class="flex justify-between items-center mt-4">
-                            <span class="text-xl font-black text-gray-900">R$ ${product.price.toFixed(2)}</span>
-                            <button onclick="addToCart(${product.id})" class="bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 transition">
-                                <i class="fas fa-plus"></i>
-                            </button>
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">${p.name}</h4>
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">${p.description}</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">A partir de</span>
+                            <span class="font-black text-xl text-blue-600">${STORE_CONFIG.currency} ${p.price.toFixed(2)}</span>
                         </div>
+                        <button onclick="addToCart(${p.id})" class="bg-slate-900 hover:bg-blue-600 text-white w-12 h-12 rounded-2xl transition-colors flex items-center justify-center shadow-lg shadow-slate-200">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                 </div>
             `).join('');
-        }
-
-        function filterProducts() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = STORE_CONFIG.products.filter(p => 
-                p.name.toLowerCase().includes(query) || 
-                p.description.toLowerCase().includes(query)
-            );
-            renderProducts(filtered);
         }
 
         function toggleCart() {
@@ -223,77 +188,66 @@
         }
 
         function addToCart(id) {
-            const prod = STORE_CONFIG.products.find(p => p.id === id);
-            const exists = cart.find(i => i.id === id);
-            if (exists) {
-                exists.quantity++;
-            } else {
-                cart.push({...prod, quantity: 1});
-            }
+            const p = STORE_CONFIG.products.find(x => x.id === id);
+            cart.push({...p, cartId: Date.now()});
             updateUI();
-            if (document.getElementById('cart-drawer').classList.contains('translate-x-full')) {
-                toggleCart();
-            }
+            
+            // Pequeno feedback visual ao adicionar
+            const btn = event.currentTarget;
+            btn.classList.replace('bg-slate-900', 'bg-green-500');
+            setTimeout(() => btn.classList.replace('bg-green-500', 'bg-slate-900'), 800);
         }
 
-        function removeFromCart(id) {
-            cart = cart.filter(i => i.id !== id);
+        function removeFromCart(cartId) {
+            cart = cart.filter(item => item.cartId !== cartId);
             updateUI();
         }
 
         function updateUI() {
-            const itemsCont = document.getElementById('cart-items');
-            const totalLabel = document.getElementById('cart-total');
-            const countLabel = document.getElementById('cart-count-label');
-            const headerTotal = document.getElementById('cart-total-header');
-
-            const count = cart.reduce((a, b) => a + b.quantity, 0);
-            countLabel.innerText = count;
-
+            // Atualiza contador
+            document.getElementById('cart-count').innerText = cart.length;
+            
+            // Atualiza Lista
+            const container = document.getElementById('cart-items');
             if (cart.length === 0) {
-                itemsCont.innerHTML = `
-                    <div class="flex flex-col items-center justify-center py-20 text-gray-400">
-                        <i class="fas fa-shopping-basket text-4xl mb-4"></i>
-                        <p>Carrinho vazio</p>
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-slate-400 italic">
+                        <i class="fa-solid fa-cart-flatbed text-5xl mb-4 opacity-20"></i>
+                        <p>Seu carrinho está vazio...</p>
                     </div>`;
-                totalLabel.innerText = 'R$ 0,00';
-                headerTotal.innerText = '0';
-                return;
-            }
-
-            let total = 0;
-            itemsCont.innerHTML = cart.map(item => {
-                total += item.price * item.quantity;
-                return `
-                    <div class="flex items-center gap-4 bg-white p-3 rounded-xl shadow-sm border border-gray-100">
-                        <img src="${item.image}" class="w-14 h-14 rounded-lg object-cover" onerror="this.src='https://via.placeholder.com/100'">
+            } else {
+                container.innerHTML = cart.map(i => `
+                    <div class="flex items-center gap-4 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                        <img src="${i.image}" class="w-16 h-16 object-cover rounded-xl shadow-sm">
                         <div class="flex-1">
-                            <h5 class="font-bold text-sm text-gray-900">${item.name}</h5>
-                            <p class="text-blue-600 text-xs font-bold">${item.quantity}x R$ ${item.price.toFixed(2)}</p>
+                            <h5 class="font-bold text-slate-800 text-sm">${i.name}</h5>
+                            <span class="text-blue-600 font-bold text-sm">R$ ${i.price.toFixed(2)}</span>
                         </div>
-                        <button onclick="removeFromCart(${item.id})" class="text-gray-300 hover:text-red-500 p-2">
-                            <i class="fas fa-trash-alt"></i>
+                        <button onclick="removeFromCart(${i.cartId})" class="text-slate-300 hover:text-red-500 transition-colors">
+                            <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
-                `;
-            }).join('');
-            
-            totalLabel.innerText = `R$ ${total.toFixed(2)}`;
-            headerTotal.innerText = Math.floor(total);
+                `).join('');
+            }
+
+            // Atualiza Total
+            const total = cart.reduce((a, b) => a + b.price, 0);
+            document.getElementById('cart-total').innerText = `R$ ${total.toFixed(2)}`;
         }
 
         function checkout() {
             if (cart.length === 0) return;
-            let msg = `*PEDIDO TNG GRÁFICA*\n\n`;
-            let total = 0;
-            cart.forEach(i => {
-                const sub = i.price * i.quantity;
-                total += sub;
-                msg += `• ${i.quantity}x ${i.name} (R$ ${sub.toFixed(2)})\n`;
-            });
-            msg += `\n*TOTAL: R$ ${total.toFixed(2)}*`;
-            window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+            
+            let itensStr = cart.map(i => `✅ *${i.name}* - R$ ${i.price.toFixed(2)}`).join('%0A');
+            const total = cart.reduce((a, b) => a + b.price, 0);
+            
+            let text = `Olá, TNG Gráfica! Gostaria de fazer um pedido:%0A%0A${itensStr}%0A%0A💰 *Total: R$ ${total.toFixed(2)}*%0A%0AComo posso proceder com o pagamento e envio dos arquivos?`;
+            
+            window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${text}`, '_blank');
         }
+
+        // Inicialização
+        window.onload = initStore;
     </script>
 </body>
 </html>

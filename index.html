@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TNG Gráfica Rápida - Aparecida de Goiânia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome atualizado -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -17,15 +16,13 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade { animation: fadeIn 0.6s ease forwards; }
         
-        /* Estilo para o fundo escuro do destaque */
         .hero-dark {
             background-color: #0f1115;
             background-image: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
         }
 
-        /* Dica visual para o link de localização */
         .location-link:hover .location-icon-bg {
-            background-color: #1d4ed8; /* Blue-700 */
+            background-color: #1d4ed8;
             transform: scale(1.1);
         }
         .location-link:hover {
@@ -83,7 +80,6 @@
         </div>
     </header>
 
-    <!-- Layout de Destaque com Fundo Escuro -->
     <section class="hero-dark relative overflow-hidden">
         <div class="container mx-auto px-4 md:px-8 py-12 md:py-24 flex flex-col md:flex-row items-center gap-12">
             <div class="flex-1 text-center md:text-left z-10">
@@ -110,7 +106,6 @@
                         <img src="https://i.ibb.co/xSRf7BXp/474477456-1172467881494758-562927171427482846-n-1.jpg" alt="TNG Gráfica Destaque" class="w-full h-auto min-h-[300px] md:min-h-[450px] object-cover transform hover:scale-105 transition-transform duration-700">
                     </div>
                     
-                    <!-- Botão de Localização Clicável com dicas visuais -->
                     <a href="https://share.google/i6GUojqMtUALSsNEP" target="_blank" class="location-link absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-xl p-4 rounded-2xl shadow-2xl border border-white flex items-center gap-3 transition-all duration-300 group/link hover:shadow-blue-500/20">
                         <div class="location-icon-bg w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-blue-200 transition-transform duration-300">
                             <i class="fa-solid fa-location-dot"></i>
@@ -127,7 +122,6 @@
             </div>
         </div>
         
-        <!-- Elementos decorativos de fundo -->
         <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -z-10"></div>
         <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-900/20 rounded-full blur-[100px] -z-10"></div>
     </section>
@@ -155,7 +149,6 @@
         </div>
     </footer>
 
-    <!-- Carrinho Lateral -->
     <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-slate-900/60 z-[60] hidden backdrop-blur-sm"></div>
     <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] cart-drawer translate-x-full shadow-2xl flex flex-col p-6">
         <div class="flex justify-between items-center mb-8 pb-4 border-b">
@@ -248,9 +241,14 @@
 
         function checkout() {
             if (cart.length === 0) return;
-            let itensStr = cart.map(i => `✅ *${i.name}* - R$ ${i.price.toFixed(2)}`).join('%0A');
+
+            // Removemos os emojis e formatamos com hífens simples para uma aparência mais sóbria
+            let itensStr = cart.map(i => `- ${i.name}: R$ ${i.price.toFixed(2)}`).join('%0A');
             const total = cart.reduce((a, b) => a + b.price, 0);
-            let text = `Olá TNG Gráfica! Gostaria de um orçamento:%0A%0A${itensStr}%0A%0A *Total: R$ ${total.toFixed(2)}*%0A%0AComo iremos prosseguir agora?`;
+            
+            // Texto formatado sem emojis
+            let text = `Olá TNG Gráfica! Gostaria de um orçamento para os seguintes itens:%0A%0A${itensStr}%0A%0ATotal do Pedido: R$ ${total.toFixed(2)}%0A%0AAguardando instruções para prosseguir com o pagamento e envio da arte.`;
+            
             window.open(`${STORE_CONFIG.whatsappUrl}?text=${text}`, '_blank');
         }
         

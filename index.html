@@ -47,11 +47,11 @@
             locationUrl: "https://share.google/i6GUojqMtUALSsNEP",
             products: [
                 { id: 1, name: "Agendas Personalizadas", price: 65.00, description: "Produto personalizado, capa dura e várias opções de acabamento. Atacado com preço diferenciado.", image: "https://i.ibb.co/9k4VjqqD/Captura-de-tela-2026-04-03-143949.png" },
-                { id: 2, name: "Balinhas personalizadas", price: 70.00, description: "Balinhas personalizadas com 100 unidades.", image: "https://i.ibb.co/tpP5dr09/Captura-de-tela-2026-04-03-143712.png" },
-                { id: 3, name: "Tag com Balinha", price: 1.50, description: "Tag com Balinha personalizadas, pedido mínimo de 50 unidades.", image: "https://i.ibb.co/s9hdb6yx/Captura-de-tela-2026-04-03-142802.png" },
+                { id: 2, name: "Balinhas Personalizadas", price: 70.00, description: "Balinhas personalizadas com 100 unidades.", image: "https://i.ibb.co/tpP5dr09/Captura-de-tela-2026-04-03-143712.png" },
+                { id: 3, name: "Tag com Balinha", price: 75.0, description: "Tag com Balinha personalizadas, pedido mínimo de 50 unidades.", image: "https://i.ibb.co/s9hdb6yx/Captura-de-tela-2026-04-03-142802.png" },
                 { id: 4, name: "Cartela de Adesivos A4", price: 15.00, description: "Folha adesiviva gloss papel.", image: "https://i.ibb.co/GQLdFQkM/Captura-de-tela-2026-04-03-130002.png" },
-                { id: 5, name: "Canetas", price: 2.25, description: "Caneta com personalização, pedido mínimo de 20 unidades.", image: "https://i.ibb.co/C543fyJF/Captura-de-tela-2026-04-03-143334.png" },
-                { id: 6, name: "Carimbos", price: 48.00, description: "Carimbos Personalizados.", image: "https://i.ibb.co/3myzvKjL/Captura-de-tela-2026-04-03-143126.png" },
+                { id: 5, name: "Canetas Personalizadas", price: 45.00, description: "Caneta com personalização, pedido mínimo de 20 unidades.", image: "https://i.ibb.co/C543fyJF/Captura-de-tela-2026-04-03-143334.png" },
+                { id: 6, name: "Carimbos Personalizados", price: 48.00, description: "Carimbos Personalizados.", image: "https://i.ibb.co/3myzvKjL/Captura-de-tela-2026-04-03-143126.png" },
                 { id: 7, name: "Panfletos 4x0", price: 150.00, description: "1000 unidades, modelo 4/0 frente colorida verso branco. Tamanho 10x15cm.", image: "https://i.ibb.co/Hpgp3ybN/Captura-de-tela-2026-04-03-144233.png" },
                 { id: 8, name: "Cartão de Visita", price: 135.00, description: "Cartao de visita 4/1 (frente colorida e verso preto e branco).", image: "https://i.ibb.co/RTkqWZm3/Captura-de-tela-2026-04-03-144446.png" },
                 { id: 9, name: "Calendário Triangular de mesa", price: 70.00, description: "Calendário Triangular 10 unidades.", image: "https://i.ibb.co/XZxgyNS3/Captura-de-tela-2026-04-03-145253.png" },
@@ -250,7 +250,7 @@
             if (cart.length === 0) return;
             let itensStr = cart.map(i => `✅ *${i.name}* - R$ ${i.price.toFixed(2)}`).join('%0A');
             const total = cart.reduce((a, b) => a + b.price, 0);
-            let text = `Olá TNG Gráfica! Gostaria de um orçamento:%0A%0A${itensStr}%0A%0A💰 *Total: R$ ${total.toFixed(2)}*%0A%0AComo procedo com o envio dos arquivos?`;
+            let text = `Olá TNG Gráfica! Gostaria de um orçamento:%0A%0A${itensStr}%0A%0A💰 *Total: R$ ${total.toFixed(2)}*%0A%0AComo será prosseguido agora?`;
             window.open(`${STORE_CONFIG.whatsappUrl}?text=${text}`, '_blank');
         }
         

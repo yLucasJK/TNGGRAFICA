@@ -250,7 +250,7 @@
             if (cart.length === 0) return;
             let itensStr = cart.map(i => `✅ *${i.name}* - R$ ${i.price.toFixed(2)}`).join('%0A');
             const total = cart.reduce((a, b) => a + b.price, 0);
-            let text = `Olá TNG Gráfica! Gostaria de um orçamento:%0A%0A${itensStr}%0A%0A *Total: R$ ${total.toFixed(2)}*%0A%0AComo será prosseguido agora?`;
+            let text = `Olá TNG Gráfica! Gostaria de um orçamento:%0A%0A${itensStr}%0A%0A *Total: R$ ${total.toFixed(2)}*%0A%0AComo iremos prosseguir agora?`;
             window.open(`${STORE_CONFIG.whatsappUrl}?text=${text}`, '_blank');
         }
         
